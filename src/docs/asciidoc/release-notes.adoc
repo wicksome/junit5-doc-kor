@@ -1,0 +1,18 @@
+[[release-notes]]
+== Release Notes
+
+:numbered!:
+
+include::release-notes-5.0.0-ALPHA.adoc[]
+
+include::release-notes-5.0.0-M1.adoc[]
+
+include::release-notes-5.0.0-M2.adoc[]
+
+include::release-notes-5.0.0-M3.adoc[]
+
+include::release-notes-5.0.0-M4.adoc[]
+
+include::release-notes-5.0.0-M5.adoc[]
+
+:numbered:

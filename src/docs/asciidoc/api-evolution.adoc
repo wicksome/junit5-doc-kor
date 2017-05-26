@@ -1,0 +1,44 @@
+[[api-evolution]]
+== API Evolution
+
+One of the major goals of JUnit 5 is to improve maintainers' capabilities to evolve JUnit
+despite its being used in many projects. With JUnit 4 a lot of stuff that was originally
+added as an internal construct only got used by external extension writers and tool
+builders. That made changing JUnit 4 especially difficult and sometimes impossible.
+
+That's why JUnit 5 introduces a defined lifecycle for all publicly available interfaces,
+classes, and methods.
+
+[[api-evolution-annotations]]
+=== API Annotations
+
+Every published artifact has a version number `<major>.<minor>.<patch>` and all
+publicly available interfaces, classes, and methods are annotated with {API}. The
+annotation's `Usage` value can be assigned one of the following five values:
+
+[cols="20,80"]
+|===
+| Usage            | Description
+
+| `Internal`       | Must not be used by any code other than JUnit itself. Might be removed without prior notice.
+| `Deprecated`     | Should no longer be used; might disappear in the next minor release.
+| `Experimental`   | Intended for new, experimental features where we are looking for feedback. +
+                     Use this element with caution; it might be promoted to `Maintained` or
+                     `Stable` in the future, but might also be removed without prior notice, even in a patch.
+| `Maintained`     | Intended for features that will not be changed in a backwards-
+                     incompatible way for *at least* the next minor release of the current
+                     major version. If scheduled for removal, it will be demoted to `Deprecated` first.
+| `Stable`         | Intended for features that will not be changed in a backwards-
+                     incompatible way in the current major version (`5.*`).
+|===
+
+If the `@API` annotation is present on a type, it is considered to be applicable for all
+public members of that type as well. A member is allowed to declare a different `Usage`
+value of lower stability.
+
+[[api-evolution-tooling]]
+=== Tooling Support
+
+The JUnit team plans to provide native tooling support for all JUnit users, extenders,
+and tool builders. The tooling support will provide a means to check if the JUnit APIs
+are being used in accordance with `@API` annotation declarations.
